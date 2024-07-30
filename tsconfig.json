@@ -1,0 +1,30 @@
+{
+  "extends": "@tsconfig/node-lts/tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "ts-node": {
+    "transpileOnly": true,
+    "esm": true,
+  },
+  "paths": {
+    "@/*": [
+      "./src/*"
+    ],
+  },
+  "include": [
+    "src/**/*",
+    "src/global.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
