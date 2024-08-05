@@ -5,14 +5,17 @@ import winston from 'winston'
 import { fileURLToPath } from 'url'
 import bodyParser from 'body-parser'
 
-import { format, fromUnixTime, addHours } from 'date-fns'
+import { format } from 'date-fns'
+import { MenuRouter } from './routes/menu.ts'
+import { responseHandler } from './middlewares/responseHandler.ts'
+import { test } from '@utils/index.ts'
+// import { Database } from '@/db/index.ts'
+console.log(test)
+
+// console.log(Database)
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-
-import { MenuRouter } from './routes/menu.ts'
-
-import { responseHandler } from './middlewares/responseHandler.ts'
 
 const app = express()
 
