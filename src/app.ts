@@ -1,18 +1,13 @@
 import path from 'path'
 import morgan from 'morgan'
 import express from 'express'
-import winston from 'winston'
 import { fileURLToPath } from 'url'
 import bodyParser from 'body-parser'
-
 import { format } from 'date-fns'
+
+import { logger } from '@/utils/logger.ts'
 import { MenuRouter } from './routes/menu.ts'
 import { responseHandler } from './middlewares/responseHandler.ts'
-import { test } from '@utils/index.ts'
-// import { Database } from '@/db/index.ts'
-console.log(test)
-
-// console.log(Database)
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -39,20 +34,6 @@ app.use(responseHandler)
 
 // ! 路由
 app.use('/menus', MenuRouter)
-
-// ! 设置winston日志记录器
-const logger = winston.createLogger({
-	level: 'error',
-	format: winston.format.combine(
-		winston.format.colorize(),
-		winston.format.timestamp(),
-		winston.format.printf(({ timestamp, level, message, stack }) => {
-			const localTime = format(timestamp, 'yyyy-MM-dd HH:mm:ss')
-			return `${localTime} ${level}: ${message} - ${stack}`
-		}),
-	),
-	transports: [new winston.transports.Console(), new winston.transports.File({ filename: 'error.log' })],
-})
 
 // 错误处理中间件
 app.use((err: Error, req: ExpressRequest, res: ExpressResponse, next: ExpressNextFunction) => {
