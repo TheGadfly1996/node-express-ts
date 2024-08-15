@@ -12,6 +12,6 @@ const MenuRouter: Router = Router()
 
 MenuRouter.get('/', getMenu)
 
-MenuRouter.post('/', requireAllFields(['menuType']), handleRequestErrors, createMenu)
+MenuRouter.post('/', requireAllFields(['route', 'type', 'icon', 'name', 'parent_id']), handleRequestErrors, createMenu)
 
 export { MenuRouter }
